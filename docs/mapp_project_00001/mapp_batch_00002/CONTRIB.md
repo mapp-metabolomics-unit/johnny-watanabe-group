@@ -4,7 +4,7 @@
 ```bash
 ssh commons-server
 tmux a -n sirius
-cd git_repos/mapp-metabolomics-unit/johnny-watanabe-group
+cd git_repos/mapp-metabolomics-unit/johnny-watanabe-group/docs/mapp_project_00001/mapp_batch_00002/
 ```
 
 ### Login
