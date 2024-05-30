@@ -1,4 +1,4 @@
-_commit: 0.0.58
+_commit: 0.0.59
 _src_path: gh:mapp-metabolomics-unit/mapp-repo-copier-template
 mapp_batch: mapp_batch_00003
 mapp_project: mapp_project_00001
@@ -7,4 +7,7 @@ recorded_repository_name: "johnny-watanabe-group"
 recorded_author: "MAPP Metabolomics Unit"
 recorder_email: "pierre-marie.allard@unifr.ch"
 recorded_github_username: "mapp-metabolomics-unit"
+recorded_mapp_project: "mapp_project_00001"
+recorded_mapp_batch: "mapp_batch_00003"
+
 
