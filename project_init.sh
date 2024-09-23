@@ -2,48 +2,39 @@
 
 echo "Starting project initialization script..."
 
-# we print the PWD to see if we are in /tmp/ or not
+# Print the current working directory
 echo "Current working directory: $PWD"
 
+# Exit immediately if a command exits with a non-zero status
+set -e
 
 # Initialize git repository only if not already initialized
-git init
-if [ $? -ne 0 ]; then
-    echo "Failed to initialize git repository"
-    exit 1
+if [ ! -d .git ]; then
+    git init
+    echo "Git repository initialized."
+else
+    echo "Git repository already initialized."
 fi
-echo "Git repository initialized."
 
-# Add remote origin only if not already added
-git remote add origin "https://github.com/mapp-metabolomics-unit/johnny-watanabe-group.git"
-if [ $? -ne 0 ]; then
-    echo "Failed to add remote origin"
-    exit 1
+# Check if remote origin already exists
+if git remote -v | grep -q origin; then
+    echo "Remote origin already exists."
+    exit 0
+else
+    git remote add origin "https://github.com/mapp-metabolomics-unit/johnny-watanabe-group.git"
+    echo "Remote origin added."
 fi
-echo "Remote origin added."
 
 # Add all files to git
 git add .
-if [ $? -ne 0 ]; then
-    echo "Failed to add files to git"
-    exit 1
-fi
 echo "Files added to git."
 
 # Commit the files
 git commit -m "Initial commit"
-if [ $? -ne 0 ]; then
-    echo "Failed to commit files"
-    exit 1
-fi
 echo "Files committed."
 
 # Push to the remote repository
 git push -u origin main
-if [ $? -ne 0 ]; then
-    echo "Failed to push to remote repository"
-    exit 1
-fi
 echo "Pushed to remote repository."
 
 echo "Project initialization script completed."

@@ -15,7 +15,3 @@ Repository initiated with [mapp-metabolomics-unit/mapp-repo-copier-template](htt
 This project was created by MAPP Metabolomics Unit.
 
 Contact: pierre-marie.allard@unifr.ch
-
-And what ? So what ? MAPP Metabolomics Unit is getting a coffee.
-But only when MAPP Metabolomics Unit is done with this. Can I have coffee, please, said, MAPP Metabolomics Unit in  a low voice.
-He resigned. So close to coffee. But he had to finish this
