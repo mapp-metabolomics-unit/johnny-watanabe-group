@@ -1,0 +1,7 @@
+A "DatasetExperiment" object
+----------------------------
+name:          mapp_batch_00114 LCMS metabolomics dataset
+description:   Untargeted metabolomics on yeast in positive mode.
+data:          23 rows x 529 columns
+sample_meta:   23 rows x 8 columns
+variable_meta: 529 rows x 157 columns

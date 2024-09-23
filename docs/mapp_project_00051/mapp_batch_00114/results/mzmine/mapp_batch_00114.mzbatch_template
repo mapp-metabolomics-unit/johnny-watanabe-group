@@ -77,7 +77,7 @@
             <parameter name="Denormalize fragment scans (traps)">true</parameter>
         </parameter>
         <parameter name="Metadata file" selected="true">
-            <current_file>/Users/pma/git_repos/mapp-metabolomics-unit/johnny-watanabe-group/docs/mapp_project_00051/mapp_batch_00114/metadata/treated/mapp_batch_00114_metadata.tsv</current_file>
+            <current_file>/Users/pma/git_repos/mapp-metabolomics-unit/roger-schneiter-group/docs/mapp_project_00051/mapp_batch_00114/metadata/treated/mapp_batch_00114_metadata.tsv</current_file>
         </parameter>
         <parameter name="Spectral library files"/>
     </batchstep>
@@ -361,7 +361,7 @@
     <batchstep method="io.github.mzmine.modules.io.export_features_gnps.fbmn.GnpsFbmnExportAndSubmitModule" parameter_version="2">
         <parameter name="Feature lists" type="BATCH_LAST_FEATURELISTS"/>
         <parameter name="Filename">
-            <current_file>/Users/pma/git_repos/mapp-metabolomics-unit/johnny-watanabe-group/docs/mapp_project_00051/mapp_batch_00114/results/mzmine/mapp_batch_00114.mgf</current_file>
+            <current_file>/Users/pma/git_repos/mapp-metabolomics-unit/roger-schneiter-group/docs/mapp_project_00051/mapp_batch_00114/results/mzmine/mapp_batch_00114.mgf</current_file>
         </parameter>
         <parameter name="Merge MS/MS (experimental)" selected="false">
             <parameter name="Select spectra to merge">across samples</parameter>
@@ -394,7 +394,7 @@
     <batchstep method="io.github.mzmine.modules.io.export_features_sirius.SiriusExportModule" parameter_version="1">
         <parameter name="Feature lists" type="BATCH_LAST_FEATURELISTS"/>
         <parameter name="Filename">
-            <current_file>/Users/pma/git_repos/mapp-metabolomics-unit/johnny-watanabe-group/docs/mapp_project_00051/mapp_batch_00114/results/mzmine/mapp_batch_00114_sirius.mgf</current_file>
+            <current_file>/Users/pma/git_repos/mapp-metabolomics-unit/roger-schneiter-group/docs/mapp_project_00051/mapp_batch_00114/results/mzmine/mapp_batch_00114_sirius.mgf</current_file>
         </parameter>
         <parameter name="Merge MS/MS" selected="true">
             <parameter name="Select spectra to merge">across samples</parameter>

@@ -1,0 +1,59 @@
+{
+  "context": "Ascomycetes",
+  "governing_code": "ICN",
+  "includes_approximate_matches": true,
+  "includes_deprecated_taxa": false,
+  "includes_suppressed_names": false,
+  "matched_names": [
+    "saccharomyces cerevisiae"
+  ],
+  "results": [
+    {
+      "matches": [
+        {
+          "is_approximate_match": false,
+          "is_synonym": false,
+          "matched_name": "Saccharomyces cerevisiae",
+          "nomenclature_code": "ICN",
+          "score": 1.0,
+          "search_string": "saccharomyces cerevisiae",
+          "taxon": {
+            "flags": [],
+            "is_suppressed": false,
+            "is_suppressed_from_synth": false,
+            "name": "Saccharomyces cerevisiae",
+            "ott_id": 356221,
+            "rank": "species",
+            "source": "ott3.7draft2",
+            "synonyms": [
+              "Candida robusta",
+              "Saccharomyces capensis",
+              "Saccharomyces italicus",
+              "Saccharomyces oviformis",
+              "Saccharomyces uvarum var. melibiosus"
+            ],
+            "tax_sources": [
+              "ncbi:4932",
+              "worms:147593",
+              "gbif:2599166",
+              "irmng:10384091"
+            ],
+            "unique_name": "Saccharomyces cerevisiae"
+          }
+        }
+      ],
+      "name": "saccharomyces cerevisiae"
+    }
+  ],
+  "taxonomy": {
+    "author": "open tree of life project",
+    "name": "ott",
+    "source": "ott3.7draft2",
+    "version": "3.7",
+    "weburl": "https://tree.opentreeoflife.org/about/taxonomy-version/ott3.7"
+  },
+  "unambiguous_names": [
+    "saccharomyces cerevisiae"
+  ],
+  "unmatched_names": []
+}

@@ -1,0 +1,24 @@
+filename	mapp_sample_id	sample_id	ATTRIBUTE_sample_group	sample_type	source_taxon	Strain
+20240710_CVOL_mapp_01_82_001.mzML	mapp_01_82_001	WT_1	WT	sample	Saccharomyces cerevisiae	BY4742
+20240710_CVOL_mapp_01_82_002.mzML	mapp_01_82_002	WT_2	WT	sample	Saccharomyces cerevisiae	BY4742
+20240710_CVOL_mapp_01_82_003.mzML	mapp_01_82_003	WT_3	WT	sample	Saccharomyces cerevisiae	BY4742
+20240710_CVOL_mapp_01_82_004.mzML	mapp_01_82_004	WT_4	WT	sample	Saccharomyces cerevisiae	BY4742
+20240710_CVOL_mapp_01_82_005.mzML	mapp_01_82_005	sDelta_1	sDelta	sample	Saccharomyces cerevisiae	BY4742
+20240710_CVOL_mapp_01_82_006.mzML	mapp_01_82_006	sDelta_2	sDelta	sample	Saccharomyces cerevisiae	BY4742
+20240710_CVOL_mapp_01_82_007.mzML	mapp_01_82_007	sDelta_3	sDelta	sample	Saccharomyces cerevisiae	BY4742
+20240710_CVOL_mapp_01_82_008.mzML	mapp_01_82_008	sDelta_4	sDelta	sample	Saccharomyces cerevisiae	BY4742
+20240710_CVOL_mapp_01_82_009.mzML	mapp_01_82_009	pDelta_1	pDelta	sample	Saccharomyces cerevisiae	BY4742
+20240710_CVOL_mapp_01_82_010.mzML	mapp_01_82_010	pDelta_2	pDelta	sample	Saccharomyces cerevisiae	BY4742
+20240710_CVOL_mapp_01_82_011.mzML	mapp_01_82_011	pDelta_3	pDelta	sample	Saccharomyces cerevisiae	BY4742
+20240710_CVOL_mapp_01_82_012.mzML	mapp_01_82_012	pDelta_4	pDelta	sample	Saccharomyces cerevisiae	BY4742
+20240710_CVOL_mapp_01_82_013.mzML	mapp_01_82_013	psDelta_1	psDelta	sample	Saccharomyces cerevisiae	BY4742
+20240710_CVOL_mapp_01_82_014.mzML	mapp_01_82_014	psDelta_2	psDelta	sample	Saccharomyces cerevisiae	BY4742
+20240710_CVOL_mapp_01_82_015.mzML	mapp_01_82_015	psDelta_3	psDelta	sample	Saccharomyces cerevisiae	BY4742
+20240710_CVOL_mapp_01_82_blk.mzML	mapp_01_82_blk	Blank	blank	blank	NA	NA
+20240710_CVOL_mapp_01_82_qc_01.mzML	mapp_01_82_qc	QC	qc	qc	Saccharomyces cerevisiae	BY4743
+20240710_CVOL_mapp_01_82_qc_02.mzML	mapp_01_82_qc	QC	qc	qc	Saccharomyces cerevisiae	BY4744
+20240710_CVOL_mapp_01_82_qc_03.mzML	mapp_01_82_qc	QC	qc	qc	Saccharomyces cerevisiae	BY4745
+20240710_CVOL_mapp_01_82_qc_04.mzML	mapp_01_82_qc	QC	qc	qc	Saccharomyces cerevisiae	BY4746
+20240710_CVOL_mapp_01_82_qc_pre_00.mzML	mapp_01_82_qc	QC	qc	qc	Saccharomyces cerevisiae	BY4747
+20240710_CVOL_mapp_01_82_qc_pre_01.mzML	mapp_01_82_qc	QC	qc	qc	Saccharomyces cerevisiae	BY4748
+20240710_CVOL_mapp_01_82_qc_pre_02.mzML	mapp_01_82_qc	QC	qc	qc	Saccharomyces cerevisiae	BY4749
