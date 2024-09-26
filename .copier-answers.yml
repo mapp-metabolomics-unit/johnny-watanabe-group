@@ -1,7 +1,7 @@
-_commit: 0.0.90
+_commit: 0.0.91
 _src_path: gh:mapp-metabolomics-unit/mapp-repo-copier-template
 email: pierre-marie.allard@unifr.ch
-git_repo_path: /Users/pma/git_repos/mapp-metabolomics-unit
+git_repo_path: /Users/voletco/git_repos/mapp-metabolomics-unit
 github_username: mapp-metabolomics-unit
 gnps_job_id: 9e16a42412034ce4b1a8ef6b6cf137cd
 ionization_mode: positive
