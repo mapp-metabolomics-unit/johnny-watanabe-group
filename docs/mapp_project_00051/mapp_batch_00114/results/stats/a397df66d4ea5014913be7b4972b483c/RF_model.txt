@@ -4,9 +4,9 @@ An rfPermute model
                      Number of trees: 500 
 No. of variables tried at each split: 6 
        No. of permutation replicates: 500 
-                          Start time: 2024-09-25 06:58:51 
-                            End time: 2024-09-25 06:58:54 
-                            Run time: 2.9 secs 
+                          Start time: 2024-09-25 07:00:35 
+                            End time: 2024-09-25 07:00:38 
+                            Run time: 2.59 secs 
 
         sDelta WT pct.correct LCI_0.95 UCI_0.95
 sDelta       4  0         100     39.8      100
