@@ -1,0 +1,7 @@
+A "DatasetExperiment" object
+----------------------------
+name:          mapp_batch_00153 LCMS metabolomics dataset
+description:   Pilot profiles of hemolymph - HILIC - QTOF - pos
+data:          17 rows x 871 columns
+sample_meta:   17 rows x 6 columns
+variable_meta: 871 rows x 167 columns

@@ -5,7 +5,7 @@ email: pierre-marie.allard@unifr.ch
 gap_filling: false
 git_repo_path: /Users/pma/git_repos/mapp-metabolomics-unit
 github_username: mapp-metabolomics-unit
-gnps_job_id: f9b80e836ed04766994fff23c2827c59
+gnps_job_id: afe52ca0fbf24fbfb03e62ca14b14b9a
 ionization_mode: positive
 mapp_batch: mapp_batch_00153
 mapp_batch_description: Pilot profiles of hemolymph - HILIC - QTOF - pos
