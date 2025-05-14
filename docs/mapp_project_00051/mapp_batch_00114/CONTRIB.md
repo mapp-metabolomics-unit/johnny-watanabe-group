@@ -4,7 +4,14 @@ For this we use https://github.com/mapp-metabolomics-unit/msfiles-selector
 Once you have cloned this repo you can run the following command to move the files (from the src dir)
 
 ```bash
-sg commons-users -c './copy_files.sh -i /media/share/mapp/public/QE_plus_unifr/converted -o /msdata/mapp_project_00051/mapp_batch_00114 -p "your_file_pattern_*.mzML"'
+sg commons-users -c './copy_files.sh -i /media/share/mapp/public/QE_HFX_unifr/converted -o /msdata/mapp_project_00051/mapp_batch_00114 -p "*mapp_01_*.mzML"'
+```
+
+### Transfer the metadata to the msdata folder
+
+```bash
+cd ./docs/mapp_project_00051/mapp_batch_00114/
+cp ./metadata/treated/mapp_batch_00114_metadata.tsv /msdata/mapp_project_00051/mapp_batch_00114/
 ```
 
 
@@ -43,6 +50,7 @@ BEGIN {
   }
 }' mapp_batch_00114.mzbatch_template > mapp_batch_00114.mzbatch
 ```
+
 ### Running Mzmine
 
 You might need to source the mzmine environment
@@ -54,7 +62,7 @@ source /etc/profile
 From the Mzmine results folder
 
 ```bash
-mzmine4 -batch mapp_batch_00114.mzbatch
+sg commons-users -c '/opt/mzmine/bin/mzmine -batch mapp_batch_00114.mzbatch'
 ```
 
 
@@ -122,26 +130,27 @@ sirius login --user-env SIRIUS_USERNAME --password-env SIRIUS_PASSWORD
 
 #### Positive mode
 
+
 ```bash
-sirius -i ./mzmine/mapp_batch_00114_sirius.mgf --output ./sirius/mapp_batch_00114 --maxmz 2500 config --IsotopeSettings.filter=true --FormulaSearchDB=BIO --Timeout.secondsPerTree=0 --FormulaSettings.enforced=HCNOP --Timeout.secondsPerInstance=0 --AdductSettings.detectable=[[M+H3N+H]+,[M+Na]+,[M-H4O2+H]+,[M+K]+,[M-H2O+H]+,[M+H]+] --UseHeuristic.mzToUseHeuristicOnly=650 --AlgorithmProfile=orbitrap --IsotopeMs2Settings=IGNORE --MS2MassDeviation.allowedMassDeviation=5.0ppm --NumberOfCandidatesPerIon=1 --UseHeuristic.mzToUseHeuristic=300 --FormulaSettings.detectable=Cl,Br,S --NumberOfCandidates=10 --ZodiacNumberOfConsideredCandidatesAt300Mz=10 --ZodiacRunInTwoSteps=true --ZodiacEdgeFilterThresholds.minLocalConnections=10 --ZodiacEdgeFilterThresholds.thresholdFilter=0.95 --ZodiacEpochs.burnInPeriod=2000 --ZodiacEpochs.numberOfMarkovChains=10 --ZodiacNumberOfConsideredCandidatesAt800Mz=50 --ZodiacEpochs.iterations=20000 --AdductSettings.enforced=, --AdductSettings.fallback=[[M+Na]+,[M+K]+,[M-H2O+H]+,[M+H]+] --FormulaResultThreshold=true --InjectElGordoCompounds=true --StructureSearchDB=BIO --RecomputeResults=false formula zodiac fingerprint structure canopus write-summaries
+sirius -i ./mzmine/mapp_batch_00114_sirius.mgf --output ./sirius/mapp_batch_00114 --maxmz 2500 config --IsotopeSettings.filter=true --CandidateFormulas=, --FormulaSettings.enforced=H,C,N,O,P --Timeout.secondsPerInstance=0 --AlgorithmProfile=orbitrap --SpectralMatchingMassDeviation.allowedPeakDeviation=5.0ppm --AdductSettings.ignoreDetectedAdducts=false --AdductSettings.prioritizeInputFileAdducts=true --UseHeuristic.useHeuristicAboveMz=300 --IsotopeMs2Settings=IGNORE --MS2MassDeviation.allowedMassDeviation=5.0ppm --SpectralMatchingMassDeviation.allowedPrecursorDeviation=5.0ppm --FormulaSearchSettings.performDeNovoBelowMz=400.0 --FormulaSearchSettings.applyFormulaConstraintsToDatabaseCandidates=false --EnforceElGordoFormula=true --NumberOfCandidatesPerIonization=1 --AdductSettings.fallback=[[M+H]+,[M+Na]+,[M+K]+,[M+H3N+H]+,[M-H2O+H]+] --FormulaSearchSettings.performBottomUpAboveMz=0 --FormulaSearchSettings.applyFormulaConstraintsToBottomUp=false --UseHeuristic.useOnlyHeuristicAboveMz=650 --FormulaSearchDB=, --Timeout.secondsPerTree=0 --AdductSettings.enforced=, --FormulaSettings.detectable=B,S,Cl,Se,Br --NumberOfCandidates=10 --ZodiacNumberOfConsideredCandidatesAt300Mz=10 --ZodiacRunInTwoSteps=true --ZodiacEdgeFilterThresholds.minLocalConnections=10 --ZodiacEdgeFilterThresholds.thresholdFilter=0.95 --ZodiacNumberOfConsideredCandidatesAt800Mz=50 --FormulaResultThreshold=true --ExpansiveSearchConfidenceMode.confidenceScoreSimilarityMode=APPROXIMATE --StructureSearchDB=METACYC,BloodExposome,CHEBI,COCONUT,FooDB,GNPS,HMDB,HSDB,KEGG,KNAPSACK,LOTUS,LIPIDMAPS,MACONDA,MESH,MiMeDB,NORMAN,PLANTCYC,PUBCHEMANNOTATIONBIO,PUBCHEMANNOTATIONDRUG,PUBCHEMANNOTATIONFOOD,PUBCHEMANNOTATIONSAFETYANDTOXIC,SUPERNATURAL,TeroMol,YMDB,lotus_expanded_db --RecomputeResults=false spectra-search formulas zodiac fingerprints classes structures write-summaries
 ```
 
 ### Rerun sirius
 
 ```bash
-sirius -i ./sirius/mapp_batch_00114 --output ./sirius/mapp_batch_00114 --maxmz 2500 config --IsotopeSettings.filter=true --FormulaSearchDB=BIO --Timeout.secondsPerTree=0 --FormulaSettings.enforced=HCNOP --Timeout.secondsPerInstance=0 --AdductSettings.detectable=[[M+H3N+H]+,[M+Na]+,[M-H4O2+H]+,[M+K]+,[M-H2O+H]+,[M+H]+] --UseHeuristic.mzToUseHeuristicOnly=650 --AlgorithmProfile=orbitrap --IsotopeMs2Settings=IGNORE --MS2MassDeviation.allowedMassDeviation=5.0ppm --NumberOfCandidatesPerIon=1 --UseHeuristic.mzToUseHeuristic=300 --FormulaSettings.detectable=Cl,Br,S --NumberOfCandidates=10 --ZodiacNumberOfConsideredCandidatesAt300Mz=10 --ZodiacRunInTwoSteps=true --ZodiacEdgeFilterThresholds.minLocalConnections=10 --ZodiacEdgeFilterThresholds.thresholdFilter=0.95 --ZodiacEpochs.burnInPeriod=2000 --ZodiacEpochs.numberOfMarkovChains=10 --ZodiacNumberOfConsideredCandidatesAt800Mz=50 --ZodiacEpochs.iterations=20000 --AdductSettings.enforced=, --AdductSettings.fallback=[[M+Na]+,[M+K]+,[M-H2O+H]+,[M+H]+] --FormulaResultThreshold=true --InjectElGordoCompounds=true --StructureSearchDB=BIO --RecomputeResults=false formula zodiac fingerprint structure canopus write-summaries
+sirius -i ./mzmine/mapp_batch_00114 --output ./sirius/mapp_batch_00114 --maxmz 2500 config --IsotopeSettings.filter=true --CandidateFormulas=, --FormulaSettings.enforced=H,C,N,O,P --Timeout.secondsPerInstance=0 --AlgorithmProfile=orbitrap --SpectralMatchingMassDeviation.allowedPeakDeviation=5.0ppm --AdductSettings.ignoreDetectedAdducts=false --AdductSettings.prioritizeInputFileAdducts=true --UseHeuristic.useHeuristicAboveMz=300 --IsotopeMs2Settings=IGNORE --MS2MassDeviation.allowedMassDeviation=5.0ppm --SpectralMatchingMassDeviation.allowedPrecursorDeviation=5.0ppm --FormulaSearchSettings.performDeNovoBelowMz=400.0 --FormulaSearchSettings.applyFormulaConstraintsToDatabaseCandidates=false --EnforceElGordoFormula=true --NumberOfCandidatesPerIonization=1 --AdductSettings.fallback=[[M+H]+,[M+Na]+,[M+K]+,[M+H3N+H]+,[M-H2O+H]+] --FormulaSearchSettings.performBottomUpAboveMz=0 --FormulaSearchSettings.applyFormulaConstraintsToBottomUp=false --UseHeuristic.useOnlyHeuristicAboveMz=650 --FormulaSearchDB=, --Timeout.secondsPerTree=0 --AdductSettings.enforced=, --FormulaSettings.detectable=B,S,Cl,Se,Br --NumberOfCandidates=10 --ZodiacNumberOfConsideredCandidatesAt300Mz=10 --ZodiacRunInTwoSteps=true --ZodiacEdgeFilterThresholds.minLocalConnections=10 --ZodiacEdgeFilterThresholds.thresholdFilter=0.95 --ZodiacNumberOfConsideredCandidatesAt800Mz=50 --FormulaResultThreshold=true --ExpansiveSearchConfidenceMode.confidenceScoreSimilarityMode=APPROXIMATE --StructureSearchDB=METACYC,BloodExposome,CHEBI,COCONUT,FooDB,GNPS,HMDB,HSDB,KEGG,KNAPSACK,LOTUS,LIPIDMAPS,MACONDA,MESH,MiMeDB,NORMAN,PLANTCYC,PUBCHEMANNOTATIONBIO,PUBCHEMANNOTATIONDRUG,PUBCHEMANNOTATIONFOOD,PUBCHEMANNOTATIONSAFETYANDTOXIC,SUPERNATURAL,TeroMol,YMDB,lotus_expanded_db --RecomputeResults=false spectra-search formulas zodiac fingerprints classes structures write-summaries
 ```
 
 #### Negative mode
 
 ```bash
-sirius -i ./mzmine/mapp_batch_00114_sirius.mgf --output ./sirius/mapp_batch_00114 --maxmz 2500 config --IsotopeSettings.filter=true --FormulaSearchDB=BIO --Timeout.secondsPerTree=0 --FormulaSettings.enforced=HCNOP --Timeout.secondsPerInstance=0 --AdductSettings.detectable=[[M-H]-,[M-H2O-H]-,[M+Cl]-,[M+Br]-] --UseHeuristic.mzToUseHeuristicOnly=650 --AlgorithmProfile=orbitrap --IsotopeMs2Settings=IGNORE --MS2MassDeviation.allowedMassDeviation=15.0ppm --NumberOfCandidatesPerIon=1 --UseHeuristic.mzToUseHeuristic=300 --FormulaSettings.detectable=Cl,Br,S --NumberOfCandidates=10 --ZodiacNumberOfConsideredCandidatesAt300Mz=10 --ZodiacRunInTwoSteps=true --ZodiacEdgeFilterThresholds.minLocalConnections=10 --ZodiacEdgeFilterThresholds.thresholdFilter=0.95 --ZodiacEpochs.burnInPeriod=2000 --ZodiacEpochs.numberOfMarkovChains=10 --ZodiacNumberOfConsideredCandidatesAt800Mz=50 --ZodiacEpochs.iterations=20000 --AdductSettings.enforced=, --AdductSettings.fallback=[[M-H]-,[M-H2O-H]-,[M+Br]-,[M+Cl]-] --FormulaResultThreshold=true --InjectElGordoCompounds=true --StructureSearchDB=BIO --RecomputeResults=false formula zodiac fingerprint structure canopus write-summaries
+sirius -i ./mzmine/mapp_batch_00114_sirius.mgf --output ./sirius/mapp_batch_00114 --maxmz 2500 config --IsotopeSettings.filter=true --CandidateFormulas=, --FormulaSettings.enforced=H,C,N,O,P --Timeout.secondsPerInstance=0 --AlgorithmProfile=orbitrap --SpectralMatchingMassDeviation.allowedPeakDeviation=5.0ppm --AdductSettings.ignoreDetectedAdducts=false --AdductSettings.prioritizeInputFileAdducts=true --UseHeuristic.useHeuristicAboveMz=300 --IsotopeMs2Settings=IGNORE --MS2MassDeviation.allowedMassDeviation=5.0ppm --SpectralMatchingMassDeviation.allowedPrecursorDeviation=5.0ppm --FormulaSearchSettings.performDeNovoBelowMz=400.0 --FormulaSearchSettings.applyFormulaConstraintsToDatabaseCandidates=false --EnforceElGordoFormula=true --NumberOfCandidatesPerIonization=1 --AdductSettings.fallback=[[M-H]-,[M-H2O-H]-,[M+Br]-,[M+Cl]-] --FormulaSearchSettings.performBottomUpAboveMz=0 --FormulaSearchSettings.applyFormulaConstraintsToBottomUp=false --UseHeuristic.useOnlyHeuristicAboveMz=650 --FormulaSearchDB=, --Timeout.secondsPerTree=0 --AdductSettings.enforced=, --FormulaSettings.detectable=B,S,Cl,Se,Br --NumberOfCandidates=10 --ZodiacNumberOfConsideredCandidatesAt300Mz=10 --ZodiacRunInTwoSteps=true --ZodiacEdgeFilterThresholds.minLocalConnections=10 --ZodiacEdgeFilterThresholds.thresholdFilter=0.95 --ZodiacNumberOfConsideredCandidatesAt800Mz=50 --FormulaResultThreshold=true --ExpansiveSearchConfidenceMode.confidenceScoreSimilarityMode=APPROXIMATE --StructureSearchDB=METACYC,BloodExposome,CHEBI,COCONUT,FooDB,GNPS,HMDB,HSDB,KEGG,KNAPSACK,LOTUS,LIPIDMAPS,MACONDA,MESH,MiMeDB,NORMAN,PLANTCYC,PUBCHEMANNOTATIONBIO,PUBCHEMANNOTATIONDRUG,PUBCHEMANNOTATIONFOOD,PUBCHEMANNOTATIONSAFETYANDTOXIC,SUPERNATURAL,TeroMol,YMDB,lotus_expanded_db --RecomputeResults=false spectra-search formulas zodiac fingerprints classes structures write-summaries
 ```
 
 ### Rerun sirius
 
 ```bash
-sirius -i ./sirius/mapp_batch_00114 --output ./sirius/mapp_batch_00114 --maxmz 2500 config --IsotopeSettings.filter=true --FormulaSearchDB=BIO --Timeout.secondsPerTree=0 --FormulaSettings.enforced=HCNOP --Timeout.secondsPerInstance=0 --AdductSettings.detectable=[[M-H]-,[M-H2O-H]-,[M+Cl]-,[M+Br]-] --UseHeuristic.mzToUseHeuristicOnly=650 --AlgorithmProfile=orbitrap --IsotopeMs2Settings=IGNORE --MS2MassDeviation.allowedMassDeviation=15.0ppm --NumberOfCandidatesPerIon=1 --UseHeuristic.mzToUseHeuristic=300 --FormulaSettings.detectable=Cl,Br,S --NumberOfCandidates=10 --ZodiacNumberOfConsideredCandidatesAt300Mz=10 --ZodiacRunInTwoSteps=true --ZodiacEdgeFilterThresholds.minLocalConnections=10 --ZodiacEdgeFilterThresholds.thresholdFilter=0.95 --ZodiacEpochs.burnInPeriod=2000 --ZodiacEpochs.numberOfMarkovChains=10 --ZodiacNumberOfConsideredCandidatesAt800Mz=50 --ZodiacEpochs.iterations=20000 --AdductSettings.enforced=, --AdductSettings.fallback=[[M-H]-,[M-H2O-H]-,[M+Br]-,[M+Cl]-] --FormulaResultThreshold=true --InjectElGordoCompounds=true --StructureSearchDB=BIO --RecomputeResults=false formula zodiac fingerprint structure canopus write-summaries
+sirius -i ./mzmine/mapp_batch_00114 --output ./sirius/mapp_batch_00114 --maxmz 2500 config --IsotopeSettings.filter=true --CandidateFormulas=, --FormulaSettings.enforced=H,C,N,O,P --Timeout.secondsPerInstance=0 --AlgorithmProfile=orbitrap --SpectralMatchingMassDeviation.allowedPeakDeviation=5.0ppm --AdductSettings.ignoreDetectedAdducts=false --AdductSettings.prioritizeInputFileAdducts=true --UseHeuristic.useHeuristicAboveMz=300 --IsotopeMs2Settings=IGNORE --MS2MassDeviation.allowedMassDeviation=5.0ppm --SpectralMatchingMassDeviation.allowedPrecursorDeviation=5.0ppm --FormulaSearchSettings.performDeNovoBelowMz=400.0 --FormulaSearchSettings.applyFormulaConstraintsToDatabaseCandidates=false --EnforceElGordoFormula=true --NumberOfCandidatesPerIonization=1 --AdductSettings.fallback=[[M-H]-,[M-H2O-H]-,[M+Br]-,[M+Cl]-] --FormulaSearchSettings.performBottomUpAboveMz=0 --FormulaSearchSettings.applyFormulaConstraintsToBottomUp=false --UseHeuristic.useOnlyHeuristicAboveMz=650 --FormulaSearchDB=, --Timeout.secondsPerTree=0 --AdductSettings.enforced=, --FormulaSettings.detectable=B,S,Cl,Se,Br --NumberOfCandidates=10 --ZodiacNumberOfConsideredCandidatesAt300Mz=10 --ZodiacRunInTwoSteps=true --ZodiacEdgeFilterThresholds.minLocalConnections=10 --ZodiacEdgeFilterThresholds.thresholdFilter=0.95 --ZodiacNumberOfConsideredCandidatesAt800Mz=50 --FormulaResultThreshold=true --ExpansiveSearchConfidenceMode.confidenceScoreSimilarityMode=APPROXIMATE --StructureSearchDB=METACYC,BloodExposome,CHEBI,COCONUT,FooDB,GNPS,HMDB,HSDB,KEGG,KNAPSACK,LOTUS,LIPIDMAPS,MACONDA,MESH,MiMeDB,NORMAN,PLANTCYC,PUBCHEMANNOTATIONBIO,PUBCHEMANNOTATIONDRUG,PUBCHEMANNOTATIONFOOD,PUBCHEMANNOTATIONSAFETYANDTOXIC,SUPERNATURAL,TeroMol,YMDB,lotus_expanded_db --RecomputeResults=false spectra-search formulas zodiac fingerprints classes structures write-summaries
 ```
 
 ### Move to the sirius results folder
@@ -175,9 +184,9 @@ options:
   
 paths:
   gnps_job_id: 9e16a42412034ce4b1a8ef6b6cf137cd # The GNPS job id you want to treat
-  input_folder: /Users/voletco/git_repos/mapp-metabolomics-unit/johnny-watanabe-group/docs/mapp_project_00051/mapp_batch_00114/results/met_annot_enhancer # The path were you want your GNPS job folder to be placed
+  input_folder: /Users/pma/git_repos/mapp-metabolomics-unit/johnny-watanabe-group/docs/mapp_project_00051/mapp_batch_00114/results/met_annot_enhancer # The path were you want your GNPS job folder to be placed
   project_name: mapp_batch_00114 #ISDB_annot_LP_plantfungi_set # The name you want to give to your project, output resulst in data_out/project_name
-  output_folder: /Users/voletco/git_repos/mapp-metabolomics-unit/johnny-watanabe-group/docs/mapp_project_00051/mapp_batch_00114/results/met_annot_enhancer # the path for your output to be stored in
+  output_folder: /Users/pma/git_repos/mapp-metabolomics-unit/johnny-watanabe-group/docs/mapp_project_00051/mapp_batch_00114/results/met_annot_enhancer # the path for your output to be stored in
   metadata_path: /Users/pma/01_large_files/lotus/230106_frozen_metadata.csv # Path to the metadata of the spectral file /210715_inhouse_metadata.csv /211220_frozen_metadata.csv You can use multiple ones. Just list them as [a.csv, b.csv, c.csv]
   db_file_path: /Users/pma/01_large_files/mgf/isdb_pos_cleaned.pkl  # Path to your spectral library file. You can use multiple ones. Just list them as [a.mgf, b.mgf, c.mgf]
   adducts_pos_path: data_loc/230106_frozen_metadata/230106_frozen_metadata_adducts_pos.tsv.gz # Path to the adducts file in pos mode
@@ -230,13 +239,14 @@ filtering_params:
 conda activate met_annot_enhancer
 ```
 ```bash
-python /Users/voletco/git_repos/mapp-metabolomics-unit/mandelbrot_project/met_annot_enhancer/src/dev/nb.py
+python /Users/pma/git_repos/mapp-metabolomics-unit/mandelbrot_project/met_annot_enhancer/src/dev/nb.py
 ```
 
 ### Remove symlinks
 This command should remove symlinks from the downloaded GNPS job folder (make sure to run it from the mapp_batch folder)
 
 ```bash
+cd ./docs/mapp_project_00051/mapp_batch_00114
 find ./results/met_annot_enhancer/9e16a42412034ce4b1a8ef6b6cf137cd -type l -exec rm {} +
 ```
 
@@ -247,8 +257,8 @@ find ./results/met_annot_enhancer/9e16a42412034ce4b1a8ef6b6cf137cd -type l -exec
 
 ```yaml
 paths:
-  docs: '/Users/voletco/git_repos/mapp-metabolomics-unit/johnny-watanabe-group/docs'
-  output: '/Users/voletco/git_repos/mapp-metabolomics-unit/johnny-watanabe-group/docs/mapp_project_00051/mapp_batch_00114/results/stats' # Not mandatory, default is in the stats subdirectory
+  docs: '/Users/pma/git_repos/mapp-metabolomics-unit/johnny-watanabe-group/docs'
+  output: '/Users/pma/git_repos/mapp-metabolomics-unit/johnny-watanabe-group/docs/mapp_project_00051/mapp_batch_00114/results/stats' # Not mandatory, default is in the stats subdirectory
 
 operating_system:
   system: unix # 
@@ -458,7 +468,7 @@ feature_to_filter :
 Launch the scripts
 
 ``````bash
-Rscript /Users/voletco/git_repos/mapp-metabolomics-unit/biostat_toolbox/src/biostat_toolbox.r
+Rscript /Users/pma/git_repos/mapp-metabolomics-unit/biostat_toolbox/src/biostat_toolbox.r
 ```
 
 
@@ -486,11 +496,11 @@ cd ./docs/mapp_project_00051/mapp_batch_00114/
 #### Align horizontally
 
 ```bash
-met-annot-unifier-cli align-horizontally --canopus-file ./results/sirius/canopus_compound_summary.tsv --gnps-file ./results/met_annot_enhancer/9e16a42412034ce4b1a8ef6b6cf137cd/nf_output/library/merged_results_with_gnps.tsv --gnps-mn-file ./results/met_annot_enhancer/9e16a42412034ce4b1a8ef6b6cf137cd/nf_output/networking/clustersummary_with_network.tsv --sirius-file ./results/sirius/compound_identifications.tsv --isdb-file ./results/met_annot_enhancer/mapp_batch_00114/mapp_batch_00114_spectral_match_results_repond_flat.tsv --output ./results/tmp/mapp_batch_00114_met_annot_unified_horizontal.tsv
+met-annot-unifier-cli align-horizontally --canopus-file ./results/sirius/canopus_structure_summary.tsv --gnps-file ./results/met_annot_enhancer/9e16a42412034ce4b1a8ef6b6cf137cd/nf_output/library/merged_results_with_gnps.tsv --gnps-mn-file ./results/met_annot_enhancer/9e16a42412034ce4b1a8ef6b6cf137cd/nf_output/networking/clustersummary_with_network.tsv --sirius-file ./results/sirius/structure_identifications.tsv --isdb-file ./results/met_annot_enhancer/mapp_batch_00114/mapp_batch_00114_spectral_match_results_repond_flat.tsv --output ./results/tmp/mapp_batch_00114_met_annot_unified_horizontal.tsv
 ```
 
 #### Align vertically
 
 ```bash
-met-annot-unifier-cli align-vertically  --gnps-file ./results/met_annot_enhancer/9e16a42412034ce4b1a8ef6b6cf137cd/nf_output/library/merged_results_with_gnps.tsv --isdb-file ./results/met_annot_enhancer/mapp_batch_00114/mapp_batch_00114_spectral_match_results_repond_flat.tsv --sirius-file ./results/sirius/compound_identifications.tsv  --output ./results/tmp/mapp_batch_00114_met_annot_unified_vertical.tsv
+met-annot-unifier-cli align-vertically  --gnps-file ./results/met_annot_enhancer/9e16a42412034ce4b1a8ef6b6cf137cd/nf_output/library/merged_results_with_gnps.tsv --isdb-file ./results/met_annot_enhancer/mapp_batch_00114/mapp_batch_00114_spectral_match_results_repond_flat.tsv --sirius-file ./results/sirius/structure_identifications.tsv  --output ./results/tmp/mapp_batch_00114_met_annot_unified_vertical.tsv
 ```

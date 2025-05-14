@@ -1,13 +1,16 @@
-_commit: 0.0.91
+_commit: 0.1.7
 _src_path: gh:mapp-metabolomics-unit/mapp-repo-copier-template
+common_filename_pattern: '*mapp_01_*.mzML'
 email: pierre-marie.allard@unifr.ch
-git_repo_path: /Users/voletco/git_repos/mapp-metabolomics-unit
+gap_filling: true
+git_repo_path: /Users/pma/git_repos/mapp-metabolomics-unit
 github_username: mapp-metabolomics-unit
 gnps_job_id: 9e16a42412034ce4b1a8ef6b6cf137cd
 ionization_mode: positive
 mapp_batch: mapp_batch_00114
 mapp_batch_description: Untargeted metabolomics of Yeast cultures. Positive mode.
 mapp_project: mapp_project_00051
+noise_level: 500000.0
 repository_name: johnny-watanabe-group
 target_variable: source_taxon
 recorded_setup: true
